@@ -39,10 +39,9 @@ export function useLogin() {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CURRENT_USER });
 
             // Navigate to dashboard
-            router.push("/dashboard");
+            router.push("/dashboard/images");
         },
         onError: (error) => {
-            console.log(error);
             const parsedError = parseApiError(error);
             console.error("Login failed:", parsedError.message);
         },

@@ -2,7 +2,7 @@
  * 404 Not Found page
  * @module app/not-found
  */
-
+"use client"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";

@@ -19,13 +19,10 @@ import { loginSchema } from "@/schemas/auth.schema";
  */
 export async function POST(request: NextRequest) {
     try {
-        console.log("PPPPPPPPPOOOOOOOOOOOOST")
         // Parse and validate request body
         const body = await request.json();
-        console.log("PPPPPPPPPOOOOOOOOOOOOST body", body)
 
         const validatedData = loginSchema.parse(body);
-        console.log("PPPPPPPPPOOOOOOOOOOOOST validatedData", validatedData)
 
         // Call external API
         const authResponse = await authServiceServer.login(
@@ -33,7 +30,6 @@ export async function POST(request: NextRequest) {
             validatedData.password
         );
 
-        console.log('AUTH RESPONSE================',authResponse);
 
         // Extract user data and tokens
         const { accessToken, refreshToken, ...userData } = authResponse;

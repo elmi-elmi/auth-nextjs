@@ -29,7 +29,6 @@ async function fetchApi<T>(
     options?: RequestInit
 ): Promise<T> {
     try {
-        console.log('fetch api', url);
         const response = await fetch(url, {
             ...options,
             credentials: "include", // Important: send cookies
@@ -39,10 +38,8 @@ async function fetchApi<T>(
             },
         });
 
-        console.log(response);
 
         const data = await response.json().catch(() => ({}));
-        console.log('data', data);
 
         if (!response.ok) {
             throw new ApiError(
@@ -82,7 +79,6 @@ export const authService = {
             body: JSON.stringify(credentials),
         });
 
-        console.log('in service eeeeeeeeeeeee: ',response, credentials)
 
         // Validate user data
         userSchema.parse(response.user);

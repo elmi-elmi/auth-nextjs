@@ -45,7 +45,6 @@ export function useTokenRefresh() {
         timeoutRef.current = setTimeout(async () => {
             try {
                 await authService.refreshToken();
-                console.log("Token refreshed successfully");
             } catch (error) {
                 console.error("Token refresh failed:", error);
                 // Error will be handled by the auth interceptor

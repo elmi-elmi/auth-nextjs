@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Zap, Lock } from "lucide-react";
+import {ArrowRight, Shield, Zap, Lock, Linkedin, Github, Mail} from "lucide-react";
 
 /**
  * Home page component
@@ -18,7 +18,7 @@ export default function HomePage() {
       <div className="flex min-h-screen flex-col">
         {/* Hero Section */}
         <main className="flex-1">
-          <section className="container flex flex-col items-center justify-center gap-8 px-4 py-24 md:py-32">
+          <section className="container mx-auto flex flex-col items-center justify-center gap-8 px-4 py-24 md:py-32">
             <div className="flex max-w-[980px] flex-col items-center gap-4 text-center">
               <h1 className="text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:text-7xl">
                 Next.js 15 Authentication
@@ -29,13 +29,12 @@ export default function HomePage() {
               </span>
               </h1>
               <p className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-                Production-ready authentication boilerplate with Next.js 15,
-                React Query, Zustand, and TypeScript. Secure, fast, and scalable.
+                Production-ready authentication with Next.js 15, TypeScript, React Query, Zustand and Zod. Secure and fast
               </p>
               <div className="flex gap-4">
                 <Button size="lg" asChild>
                   <Link href="/login">
-                    Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                    Login <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
@@ -89,13 +88,40 @@ export default function HomePage() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t py-6 md:py-0">
-          <div className="container flex h-14 items-center justify-center">
-            <p className="text-sm text-muted-foreground">
-              Built with Next.js 15, React Query, Zustand & shadcn/ui
-            </p>
-          </div>
+
+        <footer className="flex flex-wrap items-center justify-center gap-6 border-t py-8">
+          <a
+              href="https://www.linkedin.com/in/elmialireza/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              aria-label="LinkedIn"
+          >
+            <Linkedin className="h-4 w-4" aria-hidden />
+            elmialireza
+          </a>
+
+          <a
+              href="https://github.com/elmi-elmi/crypto-table-task"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              aria-label="GitHub"
+          >
+            <Github className="h-4 w-4" aria-hidden />
+            elmi-elmi
+          </a>
+
+          <a
+              href="mailto:shahrokhelmi@gmail.com"
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              aria-label="Email"
+          >
+            <Mail className="h-4 w-4" aria-hidden />
+            Email
+          </a>
         </footer>
+
       </div>
   );
 }

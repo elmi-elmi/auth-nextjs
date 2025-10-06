@@ -5,7 +5,7 @@
 
 "use client";
 
-import { Home, Settings, User, LayoutDashboard } from "lucide-react";
+import {Home, Settings, User, LayoutDashboard, Images} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -37,6 +37,12 @@ const navItems = [
         href: "/dashboard/profile",
         icon: User,
     },
+
+    {
+        title: "Media", // <-- Add this new item
+        href: "/dashboard/images",
+        icon: Images,
+    },
     {
         title: "Settings",
         href: "/dashboard/settings",
@@ -56,7 +62,7 @@ export function AppSidebar() {
     return (
         <Sidebar>
             <SidebarHeader className="border-b p-4">
-                <div className="flex items-center gap-2">
+                <Link href={'/'} className="flex items-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <Home className="h-4 w-4" />
                     </div>
@@ -64,7 +70,7 @@ export function AppSidebar() {
                         <span className="text-sm font-semibold">Auth App</span>
                         <span className="text-xs text-muted-foreground">v1.0.0</span>
                     </div>
-                </div>
+                </Link>
             </SidebarHeader>
 
             <SidebarContent>
