@@ -39,7 +39,7 @@ export function useLogin() {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CURRENT_USER });
 
             // Force full reload so middleware sees new cookie
-            window.location.href = "/dashboard";
+            window.location.href = "/dashboard/images";
         },
         onError: (error) => {
             const parsedError = parseApiError(error);
