@@ -34,6 +34,7 @@ export const ROUTES = {
     HOME: "/",
     PROFILE: "/dashboard/profile",
     SETTINGS: "/dashboard/settings",
+    IMAGES: "/dashboard/images"
 } as const;
 
 /**

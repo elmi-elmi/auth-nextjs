@@ -38,8 +38,8 @@ export function useLogin() {
             // Invalidate user query to refetch
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CURRENT_USER });
 
-            // Navigate to dashboard
-            router.push("/dashboard/images");
+            // Force full reload so middleware sees new cookie
+            window.location.href = "/dashboard";
         },
         onError: (error) => {
             const parsedError = parseApiError(error);
