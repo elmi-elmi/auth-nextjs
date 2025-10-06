@@ -5,6 +5,7 @@
 
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
@@ -50,6 +51,16 @@ export function LoginForm() {
      */
     const onSubmit = (data: LoginFormData) => {
         login(data);
+    };
+
+    // Copy feedback state
+    const [copied, setCopied] = React.useState<"none" | "username" | "password">("none");
+
+    // Copy handler with animation
+    const handleCopy = (value: string, type: "username" | "password") => {
+        navigator.clipboard.writeText(value);
+        setCopied(type);
+        setTimeout(() => setCopied("none"), 1200);
     };
 
     return (
@@ -142,8 +153,66 @@ export function LoginForm() {
                         {/* Demo Credentials Info */}
                         <div className="rounded-md bg-muted p-3 text-sm">
                             <p className="font-medium mb-1">Demo Credentials:</p>
-                            <p className="text-muted-foreground">Username: emilys</p>
-                            <p className="text-muted-foreground">Password: emilyspass</p>
+                            <div className="flex items-center gap-2">
+                                <p className="text-muted-foreground mb-0">Username: emilys</p>
+                                <button
+                                    type="button"
+                                    aria-label="Copy username"
+                                    className="ml-1 text-xs text-primary hover:underline relative cursor-pointer"
+                                    onClick={() => handleCopy("emilys", "username")}
+                                >
+                                    <motion.span
+                                        initial={{ scale: 1 }}
+                                        animate={copied === "username" ? { scale: 1.2, color: '#22c55e' } : { scale: 1, color: '#6366f1' }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                        className="inline-flex"
+                                    >
+                                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2"/><rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2"/></svg>
+                                    </motion.span>
+                                    {copied === "username" && (
+                                        <motion.span
+                                            initial={{ opacity: 0, y: -8 }}
+                                            animate={{ opacity: 1, y: -20 }}
+                                            exit={{ opacity: 0, y: -8 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="absolute left-1/2 -translate-x-1/2 text-xs text-green-500 bg-white px-1 rounded shadow"
+                                            style={{ top: -18 }}
+                                        >
+                                            Copied!
+                                        </motion.span>
+                                    )}
+                                </button>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <p className="text-muted-foreground mb-0">Password: emilyspass</p>
+                                <button
+                                    type="button"
+                                    aria-label="Copy password"
+                                    className="ml-1 text-xs text-primary hover:underline relative cursor-pointer"
+                                    onClick={() => handleCopy("emilyspass", "password")}
+                                >
+                                    <motion.span
+                                        initial={{ scale: 1 }}
+                                        animate={copied === "password" ? { scale: 1.2, color: '#22c55e' } : { scale: 1, color: '#6366f1' }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                        className="inline-flex"
+                                    >
+                                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2"/><rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2"/></svg>
+                                    </motion.span>
+                                    {copied === "password" && (
+                                        <motion.span
+                                            initial={{ opacity: 0, y: -8 }}
+                                            animate={{ opacity: 1, y: -20 }}
+                                            exit={{ opacity: 0, y: -8 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="absolute left-1/2 -translate-x-1/2 text-xs text-green-500 bg-white px-1 rounded shadow"
+                                            style={{ top: -18 }}
+                                        >
+                                            Copied!
+                                        </motion.span>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </CardContent>
